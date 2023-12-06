@@ -2,11 +2,14 @@
 import { store } from './data/store';
 import axios from 'axios';
 import projectCard from './components/projectCard.vue';
+import loader from './components/partials/loader.vue';
 
   export default {
     name: 'App',
     components: {
-      projectCard
+      projectCard,
+      loader,
+      isLoaded: false
     },
     data(){
       return {
@@ -15,9 +18,11 @@ import projectCard from './components/projectCard.vue';
     },
     methods: {
       getApi(){
+        this.isLoaded = false
         axios.get(store.apiUrl)
         .then(results => {
-            store.projects = results.data;
+          this.isLoaded = true;
+          store.projects = results.data;
             console.log(store.projects);
           }).catch(error => 
             console.log(error));
@@ -29,7 +34,6 @@ import projectCard from './components/projectCard.vue';
       }
     }
   
-
 </script>
 
 <template>
@@ -37,6 +41,8 @@ import projectCard from './components/projectCard.vue';
 
 <div class="container my-5 text-white rounded p-3 projects">
   <h1>Project List</h1>
+
+  <loader v-if="!isLoaded"/>
 
   <div class="row">
     <projectCard v-for="project in store.projects" :key="project.id" :project="project"/>
