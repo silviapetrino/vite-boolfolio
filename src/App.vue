@@ -17,7 +17,8 @@ import projectCard from './components/projectCard.vue';
       getApi(){
         axios.get(store.apiUrl)
         .then(results => {
-            console.log(results.data);
+            store.projects = results.data;
+            console.log(store.projects);
           }).catch(error => 
             console.log(error));
           }
@@ -34,9 +35,13 @@ import projectCard from './components/projectCard.vue';
 <template>
 
 
-<div class="container my-5 bg-dark text-white rounded p-3">
+<div class="container my-5 text-white rounded p-3 projects">
   <h1>Project List</h1>
-  <projectCard />
+
+  <div class="row">
+    <projectCard v-for="project in store.projects" :key="project.id" :project="project"/>
+  </div>
+  
 </div>
 
 </template>
