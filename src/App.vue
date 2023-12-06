@@ -34,18 +34,16 @@ import projectCard from './components/projectCard.vue';
 <template>
 
 
-<div class="container">
+<div class="container my-5 bg-dark text-white rounded p-3">
   <h1>Project List</h1>
   <projectCard />
 </div>
 
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
-body {
-  background-color: red;
-}
+@use "./scss/main.scss" as *;
 
 
 </style>
