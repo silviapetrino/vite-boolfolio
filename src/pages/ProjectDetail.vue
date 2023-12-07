@@ -24,6 +24,12 @@ export default {
   },
   mounted(){
     this.getSingolProject(this.$route.params.slug);
+  },
+
+  computed: {
+    technologiesList(){
+      return this.project.technologies?.map(technology => technology.name).join(", ") || ' - ';
+    }
   }
 }
 
@@ -34,24 +40,21 @@ export default {
 
 <template>
   
-  <div class="container project-detail">
+  <div class="container project-detail pb-2">
 
-    <div class="card-sp">
+    <div class="card-sp text-white p-2">
+      
+      <h2 class="text-white">{{ project.title }}</h2>
+      <p><span>Description:</span>{{ project.description }}</p>
+      <p><span>Release date:</span>{{ project.description }}</p>
+      <p><span>Type: </span>{{ project.type?.name || ' - ' }}</p>
 
-        <h1>ciao</h1>
+      <p><span>Technologies: </span> {{ technologiesList }}</p>
+     
 
     </div>
 
-        <!-- <p><span>Description: </span>{{ project.description }}</p>
-    <p><span>Release date: </span>{{ project.release_date }}</p>
-    <p><span>Type: </span>{{ project.type.name }}</p>
 
-    <span v-if="project.technologies.length > 0">Technologies:</span>
-    <ul>
-      <li class="bedge bg-warning rounded" v-for="technology in project.technologies" :key="technology.id">
-       {{ technology.name }}
-      </li>
-    </ul> -->
 
   </div>
 
@@ -61,5 +64,11 @@ export default {
 
 
 <style lang="scss">
+
+// <!-- <p><span>Description: </span>{{ project.description }}</p>
+//     <p><span>Release date: </span>{{ project.release_date }}</p>
+//     <p><span>Type: </span>{{ project.type.name }}</p>
+
+   
 
 </style>

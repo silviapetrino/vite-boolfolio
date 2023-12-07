@@ -39,8 +39,8 @@ import loader from '../components/partials/loader.vue';
 <template>
 
 
-<div class="container text-white rounded projects">
-  <h1>Project List</h1>
+<div class="container rounded projects">
+  <h1 class="text-white">Project List</h1>
 
   <loader v-if="!isLoaded"/>
 
