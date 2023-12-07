@@ -30,6 +30,7 @@ header {
   width: 100%;
   height: 60px;
   padding: 15px;
+  
   ul{
     list-style:none;
     li{
@@ -40,6 +41,11 @@ header {
         color:white;
         text-decoration: none;
         text-transform:uppercase;
+        &.active{
+          font-weight: bold;
+          color:rgb(255, 174, 0);
+  }
+        }
        
         &:hover{
           text-decoration:underline;
@@ -48,11 +54,7 @@ header {
     }
     
   }
-}
 
-.router-link-exact-active{
-  font-weight: bold;
-  color:rgb(255, 174, 0);
-}
+
 
 </style>
