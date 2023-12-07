@@ -16,8 +16,13 @@ export default {
     getSingolProject(slug){
       axios.get(store.apiUrl + '/get-project/' + slug )
       .then(response => {
-          this.project = response.data;
-          console.log(this.project);
+          if(!response.data.success){
+            this.$router.push( { name: 'error-404'} )
+          } else {
+            this.project = response.data.project;
+            console.log(this.project);
+          }
+         
         })
     }
     

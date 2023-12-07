@@ -1,19 +1,23 @@
 <script>
-import Header from './components/partials/Header.vue'
+import Header from './components/partials/Header.vue';
+
+
 
 export default {
   name: 'App',
   components: {
     Header
+
   }
 }
 </script>
+   
 
 
 <template>
 
   <Header />
-  
+
   <RouterView />
   
 </template>
