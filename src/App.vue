@@ -1,60 +1,26 @@
 <script>
-import { store } from './data/store';
-import axios from 'axios';
-import projectCard from './components/projectCard.vue';
-import loader from './components/partials/loader.vue';
+import Header from './components/partials/Header.vue'
 
-  export default {
-    name: 'App',
-    components: {
-      projectCard,
-      loader,
-      isLoaded: false
-    },
-    data(){
-      return {
-        store
-      }
-    },
-    methods: {
-      getApi(){
-        this.isLoaded = false
-        axios.get(store.apiUrl)
-        .then(results => {
-          this.isLoaded = true;
-          store.projects = results.data;
-            console.log(store.projects);
-          }).catch(error => 
-            console.log(error));
-          }
-      },
-
-      mounted(){
-        this.getApi();
-      }
-    }
-  
+export default {
+  name: 'App',
+  components: {
+    Header
+  }
+}
 </script>
+
 
 <template>
 
-
-<div class="container my-5 text-white rounded p-3 projects">
-  <h1>Project List</h1>
-
-  <loader v-if="!isLoaded"/>
-
-  <div class="row">
-    <projectCard v-for="project in store.projects" :key="project.id" :project="project"/>
-  </div>
+  <Header />
   
-</div>
-
+  <RouterView />
+  
 </template>
 
+
+
 <style lang="scss">
-
-@use "./scss/main.scss" as *;
-
+@use './scss/main.scss' as *;
 
 </style>

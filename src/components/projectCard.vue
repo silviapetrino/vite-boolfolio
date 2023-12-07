@@ -1,15 +1,9 @@
 <script>
-import {store} from '../data/store';
 
 export default {
   name: 'projectCard',
   props: {
     project: Object
-  },
-  data(){
-    return{
-      store
-    }
   }
 }
 </script>
@@ -17,8 +11,12 @@ export default {
 <template>
 
   <div class="card-sp">
-    <h2>{{ project.title }}</h2>
-    <p><span>Description: </span>{{ project.description }}</p>
+
+    <ul>
+      <h2>{{ project.title }}</h2>
+    </ul>
+    
+    <!-- <p><span>Description: </span>{{ project.description }}</p>
     <p><span>Release date: </span>{{ project.release_date }}</p>
     <p><span>Type: </span>{{ project.type.name }}</p>
 
@@ -27,7 +25,7 @@ export default {
       <li class="bedge bg-warning rounded" v-for="technology in project.technologies" :key="technology.id">
        {{ technology.name }}
       </li>
-    </ul>
+    </ul> -->
 
   </div>
   
