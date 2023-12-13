@@ -15,6 +15,9 @@
         <li>
           <router-link :to="{name: 'projects'}">projects list</router-link>
         </li>
+        <li>
+          <router-link :to="{name: 'contacts'}">Contacts</router-link>
+        </li>
       </ul>
     </nav>
   </header>
