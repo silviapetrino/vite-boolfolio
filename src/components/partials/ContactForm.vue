@@ -26,7 +26,7 @@ export default {
 
   methods: {
     sendForm(){
-      
+      this.isLoading = true;
       const data = {
         name: this.name,
         email: this.email,
@@ -34,7 +34,7 @@ export default {
       }
       axios.post(store.apiUrlMail , data)
         .then(response => {
-          console.log(response.data);
+          this.isLoading = false;
           this.success = response.data.success;
           if(!this.success){
             this.errors = response.data.errors
@@ -55,8 +55,8 @@ export default {
     <h2 class="pb-2">Contacts:</h2>
 
 
-
     <form v-if="!success" @submit.prevent="sendForm()">
+      <Loader v-if="isLoading"/>
      
       <div class="mb-3">
         <label class="mx-3" for="name">Name</label>
@@ -75,7 +75,6 @@ export default {
       </div>
       <button class="btn btn-warning" type="submit">invia</button>
     </form>
-    
     
 
     <div v-else class="alert alert-success" role="alert">
