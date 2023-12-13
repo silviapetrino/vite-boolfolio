@@ -1,16 +1,21 @@
 <script>
 import axios from 'axios';
 import { store } from '../../data/store';
+import Loader from '../partials/loader.vue';
 
 export default {
   name: 'ContactForm',
+  components: {
+    Loader
+  },
 
   data(){
     return{
       name: '',
       email: '',
       message: '',
-      success: true,
+      success: false,
+      isLoading: false,
       errors: {
         name: [],
         email: [],
@@ -21,6 +26,7 @@ export default {
 
   methods: {
     sendForm(){
+      
       const data = {
         name: this.name,
         email: this.email,
@@ -35,8 +41,9 @@ export default {
           }
         })
         .catch(error => {
-        console.error('Error', error);
+          console.log(error);
         })
+        
     }
   }
 }
@@ -47,25 +54,33 @@ export default {
   <div class="container form text-white pb-5 d-flex flex-column align-items-center">
     <h2 class="pb-2">Contacts:</h2>
 
-    <form @submit.prevent="sendForm()">
+
+
+    <form v-if="!success" @submit.prevent="sendForm()">
+     
       <div class="mb-3">
         <label class="mx-3" for="name">Name</label>
-        <input v-model="name" type="text" name="name" id="name"  />
+        <input v-model="name" type="text" name="name" id="name" placeholder="name" />
         <p class="error text-danger mx-3" v-for="error in errors.name" :key="error.id">{{ error }}</p>
       </div>
       <div class="mb-3">
         <label class="mx-3" for="email">Email</label>
-        <input v-model="email" type="text" name="email" id="email" />
+        <input v-model="email" type="text" name="email" id="email" placeholder="email" />
         <p class="error text-danger mx-3" v-for="error in errors.email" :key="error.id">{{ error }}</p>
       </div>
       <div class="mb-3">
         <label class="mx-1" for="message">Message</label>
-        <textarea v-model="message" type="text" name="message" id="message" ></textarea>
+        <textarea v-model="message" type="text" name="message" id="message" placeholder="message" ></textarea>
         <p class="error text-danger mx-3" v-for="error in errors.message" :key="error.id">{{ error }}</p>
       </div>
       <button class="btn btn-warning" type="submit">invia</button>
     </form>
     
+    
+
+    <div v-else class="alert alert-success" role="alert">
+      <span>Mail was successfully sent</span>
+    </div>
     
   </div>
 
